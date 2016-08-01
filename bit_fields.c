@@ -1,7 +1,7 @@
 #include<stdint.h>
 #include<stdio.h>
 
-union Union_bitFields {
+typedef union Union_bitFields {
 	
 	struct S {
 		uint8_t x:3;
@@ -10,16 +10,19 @@ union Union_bitFields {
 	}my_struct;
 	
 	uint16_t val;
-};
+
+} Union_bitFields;
 
 int main()
 {
-	union Union_bitFields my_union;
+	Union_bitFields my_union;
 
 	my_union.my_struct.z = 3;
+	my_union.my_struct.x = 5;
 	my_union.val = 0;
 
-	printf ("%d\n", (int) my_union.my_struct.z);
+	printf("Size of the union is: %d\n", sizeof(my_union));
+	printf ("Value of y in the union bit field is: %d\n", (int) my_union.my_struct.y);
 
 	return 0;
 }
